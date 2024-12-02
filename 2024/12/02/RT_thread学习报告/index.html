@@ -1,0 +1,1494 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="RT-thread学习报告, WHJ">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>RT-thread学习报告 | WHJ</title>
+    <link rel="icon" type="image/png" href="/whj.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/whj.github.io/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/whj.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/whj.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/whj.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/whj.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/whj.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/whj.github.io/css/my.css">
+
+    <script src="/whj.github.io/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/whj.github.io/atom.xml" title="WHJ" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/whj.github.io/" class="waves-effect waves-light">
+                    
+                    <img src="/whj.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">WHJ</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/whj.github.io/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/whj.github.io/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/whj.github.io/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/whj.github.io/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/whj.github.io/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/whj.github.io/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/whj.github.io/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/whj.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">WHJ</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/whj.github.io/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/whj.github.io/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/whj.github.io/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/whj.github.io/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/whj.github.io/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/whj.github.io/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/whj.github.io/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/whj.github.io/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">RT-thread学习报告</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/whj.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-12-02
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>RT-threadq嵌入式实时操作系统</p>
+<p>物联网操作系统是指以操作系统内核（可以是 RTOS、Linux 等）为基础，包括如文件系统、图形库等较为完整的中间件组件，具备低功耗、安全、通信协议支持和云端连接能力的软件平台</p>
+<h1 id="邮箱"><a href="#邮箱" class="headerlink" title="邮箱"></a>邮箱</h1><h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>邮箱（MailBox）是一种高效的进程间通信（IPC）机制，用于在任务、线程、或中断之间传递消息。邮箱的核心是存储消息地址（通常为指针或整型数据），它不存储消息本体，因此在需要传递大块数据时，邮箱可以显著减少数据复制的开销。</p>
+<h2 id="邮箱的工作机制"><a href="#邮箱的工作机制" class="headerlink" title="邮箱的工作机制"></a>邮箱的工作机制</h2><p>典型的邮箱也称作交换消息，如下图所示，线程或中断服务例程把一封 4 字节长度的邮件发送到邮箱中，而一个或多个线程可以从邮箱中接收这些邮件并进行处理。</p>
+<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A07mb_work.png" alt="邮箱工作示意图"></p>
+<p>RT-Thread 操作系统的邮箱用于线程间通信，特点是开销比较低，效率较高。邮箱中的每一封邮件只能容纳固定的 4 字节内容。</p>
+<p>当一个线程向邮箱发送邮件时，如果邮箱没满，将把邮件复制到邮箱中。如果邮箱已经满了，发送线程可以设置超时时间，选择等待挂起或直接返回 - RT_EFULL。如果发送线程选择挂起等待，那么当邮箱中的邮件被收取而空出空间来时，等待挂起的发送线程将被唤醒继续发送。</p>
+<p>当一个线程从邮箱中接收邮件时，如果邮箱是空的，接收线程可以选择是否等待挂起直到收到新的邮件而唤醒，或可以设置超时时间。当达到设置的超时时间，邮箱依然未收到邮件时，这个选择超时等待的线程将被唤醒并返回 - RT_ETIMEOUT。如果邮箱中存在邮件，那么接收线程将复制邮箱中的 4 个字节邮件到接收缓存中。</p>
+<p><strong>消息内容：</strong>邮箱传递的是消息地址（如数据缓冲区地址），而不是实际消息的内容。</p>
+<p><strong>消息队列：</strong>邮箱内部存储消息地址，类似于一个固定容量的队列，支持先进先出（FIFO）或优先级存储。</p>
+<p><strong>同步操作：</strong>支持线程挂起等待消息，也支持非阻塞模式立即返回。</p>
+<h2 id="三、邮箱的管理方式"><a href="#三、邮箱的管理方式" class="headerlink" title="三、邮箱的管理方式"></a>三、邮箱的管理方式</h2><h3 id="邮箱控制块"><a href="#邮箱控制块" class="headerlink" title="邮箱控制块"></a>邮箱控制块</h3><figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rt_mailbox</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">rt_ipc_object</span> <span class="title">parent</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="type">rt_uint32_t</span>* msg_pool;                <span class="comment">/* 邮箱缓冲区的开始地址 */</span></span><br><span class="line">    <span class="type">rt_uint16_t</span> size;                     <span class="comment">/* 邮箱缓冲区的大小     */</span></span><br><span class="line"></span><br><span class="line">    <span class="type">rt_uint16_t</span> entry;                    <span class="comment">/* 邮箱中邮件的数目     */</span></span><br><span class="line">    <span class="type">rt_uint16_t</span> in_offset, out_offset;    <span class="comment">/* 邮箱缓冲的进出指针   */</span></span><br><span class="line">    <span class="type">rt_list_t</span> suspend_sender_thread;      <span class="comment">/* 发送线程的挂起等待队列 */</span></span><br><span class="line">};</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">rt_mailbox</span>* <span class="title">rt_mailbox_t</span>;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>邮箱控制块是一个结构体，其中含有事件相关的重要参数，在邮箱的功能实现中起重要的作用。邮箱的相关接口如下图所示，对一个邮箱的操作包含：创建 / 初始化邮箱、发送邮件、接收邮件、删除 / 脱离邮箱。</p>
+<p><img src="https://www.rt-thread.org/document/site/rt-thread-version/rt-thread-standard/programming-manual/ipc2/figures/07mb_ops.png" alt="邮箱相关接口"></p>
+<h2 id="四、邮箱的操作"><a href="#四、邮箱的操作" class="headerlink" title="四、邮箱的操作"></a>四、邮箱的操作</h2><h3 id="1-邮箱的创建"><a href="#1-邮箱的创建" class="headerlink" title="1.邮箱的创建"></a>1.邮箱的创建</h3><p><strong>创建（动态）：</strong></p>
+<p>邮箱需要在使用前进行创建，指定容量（能存储的消息地址数量）和调度方式（FIFO 或优先级）。</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_mailbox_t</span> mb = rt_mb_create(<span class="string">"mailbox"</span>, <span class="number">10</span>, RT_IPC_FLAG_FIFO);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>rt_mb_create 参数：</p>
+<ul>
+<li><strong>name:</strong> 邮箱名称。</li>
+<li><strong>size:</strong> 邮箱容量（可存储的消息地址数量）。</li>
+<li><strong>flag:</strong> 调度方式（<code>RT_IPC_FLAG_FIFO</code>或 <code>RT_IPC_FLAG_PRIO</code>）。</li>
+</ul>
+<p> 创建邮箱对象时会先从对象管理器中分配一个邮箱对象，然后给邮箱动态分配一块内存空间用来存放邮件，这块内存的大小等于邮件大小（4 字节）与邮箱容量的   乘积，接着初始化接收邮件数目和发送邮件在邮箱中的偏移量。</p>
+<p><strong>初始化（静态）：</strong></p>
+<p>初始化邮箱跟创建邮箱类似，只是初始化邮箱用于静态邮箱对象的初始化。与创建邮箱不同的是，静态邮箱对象的内存是在系统编译时由编译器分配的，一般放于读写数据段或未初始化数据段中，其余的初始化工作与创建邮箱时相同。函数接口如下：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mb_init</span><span class="params">(<span class="type">rt_mailbox_t</span> mb,</span></span><br><span class="line"><span class="params">                  <span class="type">const</span> <span class="type">char</span>* name,</span></span><br><span class="line"><span class="params">                  <span class="type">void</span>* msgpool,</span></span><br><span class="line"><span class="params">                  <span class="type">rt_size_t</span> size,</span></span><br><span class="line"><span class="params">                  <span class="type">rt_uint8_t</span> flag)</span></span><br></pre></td></tr></tbody></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mb</td>
+<td>邮箱对象的句柄</td>
+</tr>
+<tr>
+<td>name</td>
+<td>邮箱名称</td>
+</tr>
+<tr>
+<td>msgpool</td>
+<td>缓冲区指针</td>
+</tr>
+<tr>
+<td>size</td>
+<td>邮箱容量</td>
+</tr>
+<tr>
+<td>flag</td>
+<td>邮箱标志，它可以取如下数值： RT_IPC_FLAG_FIFO 或 RT_IPC_FLAG_PRIO</td>
+</tr>
+<tr>
+<td><strong>返回</strong></td>
+<td>——</td>
+</tr>
+<tr>
+<td>RT_EOK</td>
+<td>成功</td>
+</tr>
+</tbody></table>
+<p>动态创建的邮箱在最后需要手动删除，并且动态创建的邮箱已经包含了初始化的过程，因此不需要再次手动初始化。</p>
+<h3 id="2-发送邮件"><a href="#2-发送邮件" class="headerlink" title="2.发送邮件"></a>2.发送邮件</h3><p><strong>一般方式：</strong></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mb_send</span> <span class="params">(<span class="type">rt_mailbox_t</span> mb, <span class="type">rt_uint32_t</span> value)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>等待方式：</strong></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mb_send_wait</span> <span class="params">(<span class="type">rt_mailbox_t</span> mb,</span></span><br><span class="line"><span class="params">                      <span class="type">rt_uint32_t</span> value,</span></span><br><span class="line"><span class="params">                      <span class="type">rt_int32_t</span> timeout)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>rt_mb_send_wait() 与 rt_mb_send() 的区别在于有等待时间，如果邮箱已经满了，那么发送线程将根据设定的 timeout 参数等待邮箱中因为收取邮件而空出空间。如果设置的超时时间到达依然没有空出空间，这时发送线程将被唤醒并返回错误码。</p>
+<p><strong>紧急邮件：</strong></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mb_urgent</span> <span class="params">(<span class="type">rt_mailbox_t</span> mb, <span class="type">rt_ubase_t</span> value)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>紧急邮件的发送过程和发送一般邮件一样，只不过紧急邮件会直接插队到邮箱的队首，这样等待线程就可以第一时间取出紧急邮件并进行处理。</p>
+<h3 id="3-接收邮件"><a href="#3-接收邮件" class="headerlink" title="3.接收邮件"></a>3.接收邮件</h3><p>只有当接收者接收的邮箱中有邮件时，接收者才能立即取到邮件并返回 RT_EOK 的返回值，否则接收线程会根据超时时间设置，或挂起在邮箱的等待线程队列上，或直接返回。</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mb_recv</span> <span class="params">(<span class="type">rt_mailbox_t</span> mb, <span class="type">rt_uint32_t</span>* value, <span class="type">rt_int32_t</span> timeout)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>接收邮件时，接收者需指定接收邮件的邮箱句柄，并指定接收到的邮件存放位置以及最多能够等待的超时时间。如果接收时设定了超时，当指定的时间内依然未收到邮件时，将返回 - RT_ETIMEOUT。</p>
+<h3 id="4-删除邮箱"><a href="#4-删除邮箱" class="headerlink" title="4.删除邮箱"></a>4.删除邮箱</h3><p>当用 <strong>rt_mb_create() 创建的邮箱</strong>不再被使用时，应该删除它来释放相应的系统资源，一旦操作完成，邮箱将被永久性的删除。删除邮箱的函数接口如下：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mb_delete</span> <span class="params">(<span class="type">rt_mailbox_t</span> mb)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>删除邮箱时，如果有线程被挂起在该邮箱对象上，内核先唤醒挂起在该邮箱上的所有线程（线程返回值是 -RT_ERROR），然后再释放邮箱使用的内存，最后删除邮箱对象。</p>
+<h3 id="5-脱离邮箱"><a href="#5-脱离邮箱" class="headerlink" title="5.脱离邮箱"></a>5.脱离邮箱</h3><p>脱离邮箱将把<strong>静态初始化</strong>的邮箱对象从内核对象管理器中脱离。脱离邮箱使用下面的接口：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mb_detach</span><span class="params">(<span class="type">rt_mailbox_t</span> mb)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><h2 id="一、概述-1"><a href="#一、概述-1" class="headerlink" title="一、概述"></a>一、概述</h2><p>消息队列是另一种常用的线程间通讯方式，是邮箱的扩展。用于在<strong>不同任务或中断之间</strong>传递消息。消息队列不仅可以传递数据，还可以实现任务之间的同步。基于 <strong>RT-Thread</strong> 实时操作系统的实现，消息队列的功能和设计具有高度的灵活性和实时性，适用于多任务环境中任务间的高效通信。</p>
+<h2 id="二、消息队列的基本概念"><a href="#二、消息队列的基本概念" class="headerlink" title="二、消息队列的基本概念"></a>二、消息队列的基本概念</h2><h3 id="1-消息队列的定义"><a href="#1-消息队列的定义" class="headerlink" title="1.消息队列的定义"></a>1.消息队列的定义</h3><p>消息队列是一个先进先出（FIFO）的数据结构。</p>
+<p>消息队列的核心功能是存储消息，并按照任务请求的顺序传递给接收任务。</p>
+<h3 id="2-特点"><a href="#2-特点" class="headerlink" title="2.特点"></a>2.特点</h3><p>支持不定长的消息。</p>
+<p>提供非阻塞和阻塞模式的操作。</p>
+<p>支持多任务对同一个队列进行读写。</p>
+<p>可用于任务间的异步通信。</p>
+<h3 id="3-消息队列的组成"><a href="#3-消息队列的组成" class="headerlink" title="3.消息队列的组成"></a>3.消息队列的组成</h3><p><strong>消息池</strong>：存储消息的内存区域，通常是固定大小。</p>
+<p><strong>消息头和尾指针</strong>：指示当前消息队列的写入和读取位置。</p>
+<p><strong>状态变量</strong>：包括当前队列中的消息数、最大容量等。</p>
+<p><strong>任务等待列表</strong>：记录阻塞在消息队列上的任务。</p>
+<h2 id="三、消息队列的工作机制"><a href="#三、消息队列的工作机制" class="headerlink" title="三、消息队列的工作机制"></a>三、消息队列的工作机制</h2><p><img src="https://www.rt-thread.org/document/site/rt-thread-version/rt-thread-standard/programming-manual/ipc2/figures/07msg_work.png" alt="消息队列工作示意图"></p>
+<p>消息队列里面都有一个内存池，这个内存池会按照一定的大小划分为多个消息框，消息队列的消息就保存在这个消息框中，而这个消息框是以链表的形式组织起来的</p>
+<p>这里面有空闲链表的这个指针，它指向消息队列中的空闲的消息框（就是没有存放消息的消息框），消息队列还有一个链表头，一个链表尾。链表头指向目前系统中消息队列的第一条可用的消息。这个等待线程队列就是从消息队列链表头中获取消息。链表尾指向消息队列中最后一条可用消息。</p>
+<p>当线程或者中断服务程序往消息队列中发送消息的时候，系统会从这个空闲链表中，取到一个空闲的消息框然后将发送过来的消息存入空闲的消息框中，然后将这个空闲的消息框连接到消息队列的尾部，消息队列也支持紧急消息的发送，当线程或者中断服务程序发送的是一条紧急消息的时候，那么系统会直接将消息框连接到消息队列的头部，这样等待线程队列就可以第一时间获取这个消息并进行处理。</p>
+<p>当消息队列满的时候（也就是消息框都存有消息的时候），如果这个时候线程或者中断服务程序还往消息队列发送消息，那么就会发送失败。</p>
+<p>当等待线程队列在读取消息的时候，如果有消息，那就读取消息并处理。如果消息队列是空的，那么他们要么就直接返回失败，要么就会按照一定的超时时间挂起等待。</p>
+<h2 id="四、消息队列的管理方式"><a href="#四、消息队列的管理方式" class="headerlink" title="四、消息队列的管理方式"></a>四、消息队列的管理方式</h2><h3 id="RT-thread中的消息队列控制块"><a href="#RT-thread中的消息队列控制块" class="headerlink" title="RT-thread中的消息队列控制块"></a>RT-thread中的消息队列控制块</h3><figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rt_messagequeue</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">rt_ipc_object</span> <span class="title">parent</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="type">void</span>* msg_pool;                     <span class="comment">/* 指向存放消息的缓冲区的指针 */</span></span><br><span class="line"></span><br><span class="line">    <span class="type">rt_uint16_t</span> msg_size;               <span class="comment">/* 每个消息的长度 */</span></span><br><span class="line">    <span class="type">rt_uint16_t</span> max_msgs;               <span class="comment">/* 最大能够容纳的消息数 */</span></span><br><span class="line"></span><br><span class="line">    <span class="type">rt_uint16_t</span> entry;                  <span class="comment">/* 队列中已有的消息数 */</span></span><br><span class="line"></span><br><span class="line">    <span class="type">void</span>* msg_queue_head;               <span class="comment">/* 消息链表头 */</span></span><br><span class="line">    <span class="type">void</span>* msg_queue_tail;               <span class="comment">/* 消息链表尾 */</span></span><br><span class="line">    <span class="type">void</span>* msg_queue_free;               <span class="comment">/* 空闲消息链表 */</span></span><br><span class="line"></span><br><span class="line">    <span class="type">rt_list_t</span> suspend_sender_thread;    <span class="comment">/* 发送线程的挂起等待队列 */</span></span><br><span class="line">};</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">rt_messagequeue</span>* <span class="title">rt_mq_t</span>;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在 RT-Thread 中，消息队列控制块是操作系统用于管理消息队列的一个数据结构，其中含有消息队列相关的重要参数，在消息队列的功能实现中起重要的作用。消息队列的相关接口如下图所示，对一个消息队列的操作包含：创建消息队列 - 发送消息 - 接收消息 - 删除消息队列。</p>
+<p><img src="https://www.rt-thread.org/document/site/rt-thread-version/rt-thread-standard/programming-manual/ipc2/figures/07msg_ops.png" alt="消息队列相关接口"></p>
+<h2 id="五、消息队列的操作"><a href="#五、消息队列的操作" class="headerlink" title="五、消息队列的操作"></a>五、消息队列的操作</h2><h3 id="1-消息队列的创建"><a href="#1-消息队列的创建" class="headerlink" title="1.消息队列的创建"></a>1.消息队列的创建</h3><p>使用 <code>rt_mq_create</code> 或静态消息队列结构初始化消息队列。</p>
+<p>参数包括队列的名称、消息大小、最大消息数以及分配的内存池。</p>
+<p><strong>动态：</strong></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_mq_t</span> <span class="title function_">rt_mq_create</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* name, <span class="type">rt_size_t</span> msg_size,</span></span><br><span class="line"><span class="params">            <span class="type">rt_size_t</span> max_msgs, <span class="type">rt_uint8_t</span> flag)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>消息队列的名称</td>
+</tr>
+<tr>
+<td>msg_size</td>
+<td>消息队列中一条消息的最大长度，单位字节</td>
+</tr>
+<tr>
+<td>max_msgs</td>
+<td>消息队列的最大个数</td>
+</tr>
+<tr>
+<td>flag</td>
+<td>消息队列采用的等待方式，它可以取如下数值： RT_IPC_FLAG_FIFO 或 RT_IPC_FLAG_PRIO</td>
+</tr>
+<tr>
+<td><strong>返回</strong></td>
+<td>——</td>
+</tr>
+<tr>
+<td>RT_EOK</td>
+<td>发送成功</td>
+</tr>
+<tr>
+<td>消息队列对象的句柄</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>RT_NULL</td>
+<td>失败</td>
+</tr>
+</tbody></table>
+<p><strong>静态：</strong></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mq_init</span><span class="params">(<span class="type">rt_mq_t</span> mq, <span class="type">const</span> <span class="type">char</span>* name,</span></span><br><span class="line"><span class="params">                        <span class="type">void</span> *msgpool, <span class="type">rt_size_t</span> msg_size,</span></span><br><span class="line"><span class="params">                        <span class="type">rt_size_t</span> pool_size, <span class="type">rt_uint8_t</span> flag)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用 <code>rt_mq_create</code> 创建的消息队列无需额外初始化。</p>
+<p>如果使用 <code>rt_mq_init</code>（静态方式），需要手动提供消息存储区域并进行初始化。</p>
+<p>创建后，无论动态还是静态方式，消息队列即可直接使用。</p>
+<p>示例：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_mq_t</span> mq;</span><br><span class="line">mq = rt_mq_create(<span class="string">"my_mq"</span>, <span class="number">32</span>, <span class="number">16</span>, RT_IPC_FLAG_FIFO);</span><br><span class="line"><span class="keyword">if</span> (mq != RT_NULL)</span><br><span class="line">{</span><br><span class="line">    rt_kprintf(<span class="string">"Message queue created successfully\n"</span>);</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-消息发送"><a href="#2-消息发送" class="headerlink" title="2.消息发送"></a>2.消息发送</h3><p>使用 <code>rt_mq_send</code> 将数据放入消息队列。</p>
+<p>当发送消息时，消息队列对象先从空闲消息链表上取下一个空闲消息块，把线程或者中断服务程序发送的消息内容复制到消息块上，然后把该消息块挂到消息队列的尾部。</p>
+<p>当且仅当空闲消息链表上有可用的空闲消息块时，发送者才能成功发送消息；当空闲消息链表上无可用消息块，说明消息队列已满，此时，发送消息的的线程或者中断程序会收到一个错误码（-RT_EFULL）。</p>
+<p><strong>一般消息</strong></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mq_send</span> <span class="params">(<span class="type">rt_mq_t</span> mq, <span class="type">void</span>* buffer, <span class="type">rt_size_t</span> size)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mq</td>
+<td>消息队列对象的句柄</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td>消息内容</td>
+</tr>
+<tr>
+<td>size</td>
+<td>消息大小</td>
+</tr>
+<tr>
+<td><strong>返回</strong></td>
+<td>——</td>
+</tr>
+<tr>
+<td>RT_EOK</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>-RT_EFULL</td>
+<td>消息队列已满</td>
+</tr>
+<tr>
+<td>-RT_ERROR</td>
+<td>失败，表示发送的消息长度大于消息队列中消息的最大长度</td>
+</tr>
+</tbody></table>
+<p><strong>紧急消息</strong></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mq_urgent</span><span class="params">(<span class="type">rt_mq_t</span> mq, <span class="type">void</span>* buffer, <span class="type">rt_size_t</span> size)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-消息接收"><a href="#3-消息接收" class="headerlink" title="3.消息接收"></a>3.消息接收</h3><p>当消息队列中有消息时，接收者才能接收消息，否则接收者会根据超时时间设置，或挂起在消息队列的等待线程队列上，或直接返回。</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_ssize_t</span> <span class="title function_">rt_mq_recv</span> <span class="params">(<span class="type">rt_mq_t</span> mq, <span class="type">void</span>* buffer,</span></span><br><span class="line"><span class="params">                    <span class="type">rt_size_t</span> size, <span class="type">rt_int32_t</span> timeout)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>接收消息时，接收者需指定存储消息的消息队列对象句柄，并且指定一个内存缓冲区，接收到的消息内容将被复制到该缓冲区里。</p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mq</td>
+<td>消息队列对象的句柄</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td>消息内容</td>
+</tr>
+<tr>
+<td>size</td>
+<td>消息大小</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>指定的超时时间</td>
+</tr>
+<tr>
+<td><strong>返回</strong></td>
+<td>——</td>
+</tr>
+<tr>
+<td>接收到消息的长度</td>
+<td>成功收到</td>
+</tr>
+<tr>
+<td>-RT_ETIMEOUT</td>
+<td>超时</td>
+</tr>
+<tr>
+<td>-RT_ERROR</td>
+<td>失败，返回错误</td>
+</tr>
+</tbody></table>
+<h3 id="4-消息队列的删除"><a href="#4-消息队列的删除" class="headerlink" title="4.消息队列的删除"></a>4.消息队列的删除</h3><p>当消息队列不再被使用时，应该删除它以释放系统资源，一旦操作完成，消息队列将被永久性地删除。删除消息队列时，如果有线程被挂起在该消息队列等待队列上，则内核先唤醒挂起在该消息等待队列上的所有线程（线程返回值是 - RT_ERROR），然后再释放消息队列使用的内存，最后删除消息队列对象。</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">rt_err_t</span> <span class="title function_">rt_mq_delete</span><span class="params">(<span class="type">rt_mq_t</span> mq)</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="六、消息队列的使用场景"><a href="#六、消息队列的使用场景" class="headerlink" title="六、消息队列的使用场景"></a>六、消息队列的使用场景</h2><ol>
+<li><p><strong>任务间通信：</strong></p>
+<p>用于任务之间的数据传递。</p>
+</li>
+<li><p><strong>中断与任务通信：</strong></p>
+<p>中断服务程序将采集的数据发送到任务进行处理。</p>
+</li>
+</ol>
+<h2 id="七、消息队列和邮箱的区别"><a href="#七、消息队列和邮箱的区别" class="headerlink" title="七、消息队列和邮箱的区别"></a>七、消息队列和邮箱的区别</h2><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>消息队列</strong></th>
+<th><strong>邮箱</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数据存储</strong></td>
+<td>消息内容存储在队列中</td>
+<td>仅存储消息地址，不存储消息内容</td>
+</tr>
+<tr>
+<td><strong>消息大小</strong></td>
+<td>用户定义，每条消息大小相同</td>
+<td>固定长度，通常为指针大小（32/64 位）</td>
+</tr>
+<tr>
+<td><strong>容量</strong></td>
+<td>可存储多条消息，受缓冲区大小限制</td>
+<td>存储的消息数量固定，由初始化时的容量决定</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>复杂数据或需要消息排队的场景</td>
+<td>只传递指针或轻量级消息，无需复制数据</td>
+</tr>
+<tr>
+<td><strong>内存开销</strong></td>
+<td>较高，需分配缓冲区</td>
+<td>较低，只需存储消息地址</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>较低，数据需要复制</td>
+<td>较高，仅传递指针</td>
+</tr>
+</tbody></table>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/whj.github.io/about" rel="external nofollow noreferrer">whj</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://whj.github.io/whj.github.io/2024/12/02/RT_thread%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A/">https://whj.github.io/whj.github.io/2024/12/02/RT_thread%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/whj.github.io/about" target="_blank">whj</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/whj.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/whj.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/whj.github.io/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/whj.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/whj.github.io/2024/12/02/Typora%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/whj.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="Typora图床搭建">
+                        
+                        <span class="card-title">Typora图床搭建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            whj
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/whj.github.io/2024/12/02/MQTT%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/whj.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="MQTT协议学习报告">
+                        
+                        <span class="card-title">MQTT协议学习报告</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            whj
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/whj.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/whj.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/whj.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/whj.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/whj.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/whj.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/whj.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023-2024</span>
+            
+            <span id="year">2023</span>
+            <a href="/whj.github.io/about" target="_blank">whj</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/wwwhhhjj" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2119978889@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2119978889" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2119978889" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/whj.github.io/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/whj.github.io/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/whj.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="/whj.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/whj.github.io/libs/aos/aos.js"></script>
+    <script src="/whj.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/whj.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/whj.github.io/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/whj.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/whj.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/whj.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
