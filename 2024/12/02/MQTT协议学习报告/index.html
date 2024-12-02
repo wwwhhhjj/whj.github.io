@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Typora图床搭建, Hexo">
+    <meta name="keywords" content="MQTT协议学习报告, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Typora图床搭建 | Hexo</title>
+    <title>MQTT协议学习报告 | Hexo</title>
     <link rel="icon" type="image/png" href="/whj.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/whj.github.io/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/whj.github.io/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/whj.github.io/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Typora图床搭建</h1>
+                    <h1 class="description center-align post-title">MQTT协议学习报告</h1>
                 </div>
             </div>
         </div>
@@ -467,38 +467,179 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、仓库的建立"><a href="#一、仓库的建立" class="headerlink" title="一、仓库的建立"></a>一、仓库的建立</h2><p>先在github创建一个新的仓库，专门用于托管图床文件</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202114129497.png" alt="image-20241202114129497"></p>
-<p>点击new repository建立新仓库，切记要设置成public否则其他人访问不到</p>
-<p>创建好后，按需通过git 命令创建一个存储图片的文件夹</p>
-<h2 id="二、配置工具"><a href="#二、配置工具" class="headerlink" title="二、配置工具"></a>二、配置工具</h2><h3 id="1-下载一个PicGo工具"><a href="#1-下载一个PicGo工具" class="headerlink" title="1.下载一个PicGo工具"></a>1.下载一个PicGo工具</h3><p>在github上就有，一个开源项目</p>
-<p>下载好后打开，配置github的相关设置</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202114516599.png" alt="image-20241202114516599"></p>
-<p>仓库名即为刚刚创建的仓库的连接，只需要后面部分的就行，前面的https域名不需要</p>
-<p>然后设定分支名为main默认，如果你的分支为master就设置为master</p>
-<h3 id="2-设置token令牌"><a href="#2-设置token令牌" class="headerlink" title="2.设置token令牌"></a>2.设置token令牌</h3><p>打开github设置，找到最下面的开发者选项</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202114822352.png" alt="image-20241202114822352"></p>
-<p>点进去后可以看到令牌，我们随便选一个 Generate new token</p>
-<p>名字随便填一个，令牌时间我选无期限</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115111448.png" alt="image-20241202115111448"></p>
-<p>然后在repository access选项选择第三个选项，填入你刚刚创建的图床仓库</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115231210.png" alt="image-20241202115231210"></p>
-<p>下面的权限将第一栏打开，找到contes将其设定为可读写</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115338209.png" alt="image-20241202115338209"></p>
-<p>然后划到下面生成令牌</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115401825.png" alt="image-20241202115401825"></p>
-<p>生成之后复制令牌，我这里复制过了所以不显示</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115439206.png" alt="image-20241202115439206"></p>
-<p>将复制的令牌粘贴到PicGo配置里面的token选项，存储路径可以选择你在仓库里创建的文件夹，相当于你在仓库里新建了一个房间，这个房间专门共你存放照片</p>
-<h3 id="3-github插件导入"><a href="#3-github插件导入" class="headerlink" title="3.github插件导入"></a>3.github插件导入</h3><p>打开PicGo里面的插件设置，点开上面的购物袋图标</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115727941.png" alt="image-20241202115727941"></p>
-<p>下载这个插件并解压<img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115820400.png" alt="image-20241202115820400"></p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202115838790.png" alt="image-20241202115838790"></p>
-<p>然后从本地的解压路径导入即可</p>
-<h2 id="三、Typora的配置"><a href="#三、Typora的配置" class="headerlink" title="三、Typora的配置"></a>三、Typora的配置</h2><p>左上角文件点开偏好设置</p>
-<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8A/image-20241202120959186.png" alt="image-20241202120959186"></p>
-<p>在插入图片时选中上传图片，然后配置下面的选项</p>
-<p>选择PicGo（app）,然后导入你APP的路径，在点击左边的验证图片上传，就成功了。</p>
+                <h3 id="1-协议概述"><a href="#1-协议概述" class="headerlink" title="1. 协议概述"></a><strong>1. 协议概述</strong></h3><h4 id="1-1-MQTT-的定义与背景"><a href="#1-1-MQTT-的定义与背景" class="headerlink" title="1.1 MQTT 的定义与背景"></a><strong>1.1 MQTT 的定义与背景</strong></h4><p>​	MQTT（Message Queuing Telemetry Transport）是基于 TCP/IP 的轻量级消息协议，采用<strong>发布/订阅</strong>模式进行数据传输，适合资源受限设备或低带宽、高延迟的网络环境。</p>
+<ul>
+<li><p><strong>优势：</strong></p>
+<p><strong>轻量级</strong>：协议报文小，节省流量。</p>
+<p><strong>发布/订阅模式</strong>：解耦消息发送方与接收方。</p>
+<p><strong>QoS 保障</strong>：提供三种质量等级，满足不同可靠性需求。</p>
+<p><strong>保活机制</strong>：通过心跳维持长连接。</p>
+<p><strong>支持遗嘱消息</strong>：在客户端异常断开时向订阅方通知信息。</p>
+</li>
+</ul>
+<h4 id="1-2-典型应用场景"><a href="#1-2-典型应用场景" class="headerlink" title="1.2 典型应用场景"></a><strong>1.2 典型应用场景</strong></h4><p><strong>远程监控：</strong>如智能家居、环境监测。</p>
+<p><strong>消息推送：</strong>如即时通讯、在线报警。</p>
+<p><strong>设备互联：</strong>如车联网、工业控制。</p>
+<hr>
+<h3 id="2-MQTT-协议特点"><a href="#2-MQTT-协议特点" class="headerlink" title="2. MQTT 协议特点"></a><strong>2. MQTT 协议特点</strong></h3><h4 id="2-1-发布-订阅模式"><a href="#2-1-发布-订阅模式" class="headerlink" title="2.1 发布/订阅模式"></a><strong>2.1 发布/订阅模式</strong></h4><p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8Aimage-20241108141138905.png" alt="image-20241108141138905"></p>
+<ul>
+<li><p><strong>模型结构</strong>：</p>
+<ol>
+<li><strong>发布者</strong>：向 Broker 指定的主题（Topic）发送消息。</li>
+<li><strong>Broker（代理服务器）</strong>：负责消息路由，将消息分发给订阅该主题的客户端。</li>
+<li><strong>订阅者</strong>：通过订阅主题接收消息。</li>
+</ol>
+<p>MQTT协议支持一对多,多对多的应用场景,所以发布者也可以是订阅者。</p>
+</li>
+<li><p><strong>对比传统点对点通信</strong>：</p>
+<ul>
+<li>发布者与订阅者解耦，降低耦合度，提升扩展性。</li>
+<li>支持多对多通信。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-主题与通配符"><a href="#2-2-主题与通配符" class="headerlink" title="2.2 主题与通配符"></a><strong>2.2 主题与通配符</strong></h4><p>主题是 MQTT 消息传递的核心。支持层级结构和通配符：</p>
+<ul>
+<li><p><strong>层级结构</strong>：如 <code>home/sensor/temperature</code> 表示家庭中传感器的温度数据。</p>
+<p>topic是一个UTF-8字符串，是发布/订阅消息的传输中介，可以向topic发布或订阅消息</p>
+</li>
+<li><p><strong>通配符：</strong></p>
+<p><code>+</code>：匹配单层，如 <code>home/+/temperature</code>。</p>
+<p><code>#</code>：匹配多层，如 <code>home/#</code>。</p>
+</li>
+</ul>
+<h4 id="2-3-消息可靠性（QoS）"><a href="#2-3-消息可靠性（QoS）" class="headerlink" title="2.3 消息可靠性（QoS）"></a><strong>2.3 消息可靠性（QoS）</strong></h4><p>MQTT 提供三种服务质量等级，适配不同的可靠性需求：</p>
+<ul>
+<li><strong>QoS 0（最多一次）</strong>：消息发送后不确认，可能丢失。</li>
+<li><strong>QoS 1（至少一次）</strong>：消息至少到达一次，可能重复。</li>
+<li><strong>QoS 2（仅一次）</strong>：消息只到达一次，通过四步握手保证可靠性。</li>
+</ul>
+<h4 id="2-4-保活机制"><a href="#2-4-保活机制" class="headerlink" title="2.4 保活机制"></a><strong>2.4 保活机制</strong></h4><ul>
+<li>客户端通过 <code>PINGREQ</code> 和 <code>PINGRESP</code> 报文维持连接。</li>
+<li>心跳间隔由 <code>keepAliveInterval</code> 参数控制，单位为秒。</li>
+</ul>
+<h4 id="2-5-遗嘱消息"><a href="#2-5-遗嘱消息" class="headerlink" title="2.5 遗嘱消息"></a><strong>2.5 遗嘱消息</strong></h4><p>客户端异常断开时，Broker 会自动发布事先设置的遗嘱消息，通知订阅者设备的状态变化。</p>
+<hr>
+<h3 id="3-MQTT-报文与通信流程"><a href="#3-MQTT-报文与通信流程" class="headerlink" title="3. MQTT 报文与通信流程"></a><strong>3. MQTT 报文与通信流程</strong></h3><h4 id="3-1-MQTT-报文结构"><a href="#3-1-MQTT-报文结构" class="headerlink" title="3.1 MQTT 报文结构"></a><strong>3.1 MQTT 报文结构</strong></h4><p>MQTT 的消息由三部分组成：</p>
+<ol>
+<li><p><strong>固定报头</strong>：包含报文类型、标志和剩余长度。</p>
+<p><img src="https://raw.githubusercontent.com/wwwhhhjj/Typora-picture/main/%E5%9B%BE%E5%BA%8Aimage-20241108142325603.png" alt="image-20241108142325603"></p>
+</li>
+<li><p><strong>可变报头</strong>：如主题名、消息 ID 等（部分报文使用）。</p>
+</li>
+<li><p><strong>有效载荷</strong>：具体传输的数据。</p>
+</li>
+</ol>
+<h4 id="3-2-报文类型"><a href="#3-2-报文类型" class="headerlink" title="3.2 报文类型"></a><strong>3.2 报文类型</strong></h4><p>常见报文类型及作用：</p>
+<table>
+<thead>
+<tr>
+<th align="left">报文类型</th>
+<th align="left">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CONNECT</td>
+<td align="left">客户端请求连接 Broker</td>
+</tr>
+<tr>
+<td align="left">CONNACK</td>
+<td align="left">Broker 响应连接请求</td>
+</tr>
+<tr>
+<td align="left">PUBLISH</td>
+<td align="left">发布消息</td>
+</tr>
+<tr>
+<td align="left">PUBACK</td>
+<td align="left">QoS 1 发布确认</td>
+</tr>
+<tr>
+<td align="left">PUBREC</td>
+<td align="left">QoS 2 发布接收（第一步）</td>
+</tr>
+<tr>
+<td align="left">PUBREL</td>
+<td align="left">QoS 2 发布释放（第二步）</td>
+</tr>
+<tr>
+<td align="left">PUBCOMP</td>
+<td align="left">QoS 2 发布完成（第三步）</td>
+</tr>
+<tr>
+<td align="left">SUBSCRIBE</td>
+<td align="left">订阅主题</td>
+</tr>
+<tr>
+<td align="left">SUBACK</td>
+<td align="left">确认订阅</td>
+</tr>
+<tr>
+<td align="left">UNSUBSCRIBE</td>
+<td align="left">取消订阅</td>
+</tr>
+<tr>
+<td align="left">UNSUBACK</td>
+<td align="left">确认取消订阅</td>
+</tr>
+<tr>
+<td align="left">PINGREQ</td>
+<td align="left">客户端发送心跳请求</td>
+</tr>
+<tr>
+<td align="left">PINGRESP</td>
+<td align="left">Broker 响应心跳请求</td>
+</tr>
+<tr>
+<td align="left">DISCONNECT</td>
+<td align="left">客户端主动断开连接</td>
+</tr>
+</tbody></table>
+<h4 id="3-3-通信流程示例"><a href="#3-3-通信流程示例" class="headerlink" title="3.3 通信流程示例"></a><strong>3.3 通信流程示例</strong></h4><ol>
+<li><p>连接建立：</p>
+<p>客户端发送 <code>CONNECT</code> 请求。</p>
+<p>Broker 返回 <code>CONNACK</code>，连接成功。</p>
+</li>
+<li><p>发布消息：</p>
+<p>客户端通过 <code>PUBLISH</code> 向主题发送消息。</p>
+<p>根据 QoS 等级进行不同的确认过程。</p>
+</li>
+<li><p>订阅主题：</p>
+<p>客户端发送 <code>SUBSCRIBE</code> 报文。</p>
+<p>Broker 返回 <code>SUBACK</code> 确认订阅。</p>
+</li>
+<li><p>断开连接：</p>
+<p>客户端主动发送 <code>DISCONNECT</code>。</p>
+<p>Broker 释放相关资源。</p>
+</li>
+</ol>
+<hr>
+<h3 id="4-优化与安全性"><a href="#4-优化与安全性" class="headerlink" title="4. 优化与安全性"></a><strong>4. 优化与安全性</strong></h3><h4 id="4-1-性能优化"><a href="#4-1-性能优化" class="headerlink" title="4.1 性能优化"></a><strong>4.1 性能优化</strong></h4><ol>
+<li><p>合理配置 QoS：</p>
+<p>QoS 0：适合不敏感的传感器数据。</p>
+<p>QoS 1：适合日志或状态更新。</p>
+<p>QoS 2：适合控制指令等关键数据。</p>
+</li>
+<li><p>批量传输：</p>
+<p>减少频繁的单条消息发布，降低网络开销。</p>
+</li>
+<li><p>主题设计：</p>
+<p>设计层级清晰的主题，减少通配符滥用。</p>
+</li>
+</ol>
+<h4 id="4-2-安全机制"><a href="#4-2-安全机制" class="headerlink" title="4.2 安全机制"></a><strong>4.2 安全机制</strong></h4><ol>
+<li><p>认证：</p>
+<p>使用用户名和密码验证客户端身份。</p>
+</li>
+<li><p>加密：</p>
+<p>使用 TLS/SSL 确保数据传输的安全性。</p>
+<p>使用加密端口。</p>
+</li>
+<li><p>异常处理：</p>
+<p>配置遗嘱消息，检测客户端异常断开。</p>
+<p>配置重连机制，确保连接稳定。</p>
+</li>
+</ol>
 
                 
             </div>
@@ -525,7 +666,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://whj.github.io/whj.github.io/2024/12/02/Typora%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">https://whj.github.io/whj.github.io/2024/12/02/Typora%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</a>
+                    <a href="https://whj.github.io/whj.github.io/2024/12/02/MQTT%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A/">https://whj.github.io/whj.github.io/2024/12/02/MQTT%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -730,18 +871,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/whj.github.io/2024/12/02/Typora%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">
+                <a href="/whj.github.io/2024/12/02/RT_thread%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A/">
                     <div class="card-image">
                         
                         
-                        <img src="/whj.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="Typora图床搭建">
+                        <img src="/whj.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="RT-thread学习报告">
                         
-                        <span class="card-title">Typora图床搭建</span>
+                        <span class="card-title">RT-thread学习报告</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -751,9 +891,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -762,7 +902,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -773,13 +912,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/whj.github.io/2024/12/02/RT_thread%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A/">
+                <a href="/whj.github.io/2024/12/02/VScode%E9%85%8D%E7%BD%AE/">
                     <div class="card-image">
                         
                         
-                        <img src="/whj.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="RT-thread学习报告">
+                        <img src="/whj.github.io/medias/featureimages/14.jpg" class="responsive-img" alt="VScode远程映射配置指南">
                         
-                        <span class="card-title">RT-thread学习报告</span>
+                        <span class="card-title">VScode远程映射配置指南</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
